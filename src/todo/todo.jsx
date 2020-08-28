@@ -20,6 +20,7 @@ export default class Todo extends Component {
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
         this.handleMarkPending = this.handleMarkPending.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
+        this.handleClear = this.handleClear(this)
         this.refresh()
     }
 
@@ -50,6 +51,10 @@ export default class Todo extends Component {
         this.refresh(this.state.description)
     }
 
+    handleClear(){
+        this.refresh()
+    }
+
     refresh(description = ''){
         //ele vai pegar 
         const search = description ? `&description_regex=/${description}/` : ''
@@ -64,12 +69,12 @@ export default class Todo extends Component {
                <TodoForm description={this.state.description} 
                handleAdd={this.handleAdd}
                handleChange={this.handleChange}
-               handleSearch={this.han}
-               />
+               handleSearch={this.han}/>
                <TodoList list={this.state.list}
                handleMarkAsDone={this.handleMarkAsDone}
                handleMarkPending={this.handleMarkPending}
-               handrleRemove={this.handrleRemove}/>
+               handrleRemove={this.handrleRemove}
+               handleClear={this.handleClear}/>
             </div>
         )
     }
